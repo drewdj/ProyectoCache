@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include "CACHEsym.h"
 typedef struct {
     short int ETQ;
     short int Datos[8];
