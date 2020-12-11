@@ -20,6 +20,12 @@ int main() {
           linea[i].Datos[j]=0;
       }
   }
+  //Cargar RAM (Podemos hacer esto en una funcion para que quede más limpio)
+  fRAM = fopen("RAM.bin", "rb");
+  unsigned char RAM[1024];
+  fread(RAM ,sizeof(RAM), 1 , fRAM);
+  printf("%s\n", RAM);
+  fclose(fRAM);//ALMACENA 5 caracteres de más comprobar mañana
   //Cargar Accesos a memoria
   fp = fopen("accesos_memoria.txt","r");
   int numero_accesos = 0;
@@ -35,33 +41,16 @@ int main() {
   }
   numero_accesos = numero_accesos + 1; //se repite una vez más porque el ultimo acceso no tiene \n
   printf("Numero de accesos %d\n", numero_accesos);
-
   rewind(fp);
   int MAXCHAR = (numero_accesos * 5) - 1;
   char arrayAccesos[MAXCHAR];
+  char arbolAccesos[numero_accesos][5];
+  int cb = 0;
+  /*leer cada acceso de linea, como no podemos guardar en otro array o en el
+  mismo array todos los accesos, sino de linea en linea, lo suyo sería trabajar con los accesos con el puntero de FILE*/
   while (fgets(arrayAccesos, MAXCHAR, fp) != NULL){
     printf("%s", arrayAccesos);
   }
   fclose(fp);
-  char arbolAccesos[numero_accesos][4];
-  int general_counter = 0;
-  for(int x = 0; x < numero_accesos; x++){
-    for(int y = 0; y < 4; y++){
-      if(arrayAccesos[general_counter] != '\n')
-        arbolAccesos[x][y] = arrayAccesos[general_counter];
-      general_counter++;
-    }
-  }//ME HE IDO A CENAR, ESTO ESTA A MEDIAS, PERO TENGO INTENCION DE TERMINAR PARA ESTA NOCHE EL LECTOR DE ACCESOS A MEMORIA PARA GUARDARLO EN MEMORIA
-  //Leer Accesos a memoria (Debug, Borrar despues)
-  /*
-  while(fgets(line, sizeof(line) / sizeof(line[0]), fptr) != NULL)
-  printf("%s\n", fp);
-  */
-  /*
-  fRAM = fopen("RAM.bin", "rb");
-  unsigned char RAM[1024];
-  fread(RAM ,sizeof(RAM), 1 , fRAM);
-  printf("%s\n", RAM[1]);
-  */
   return 0;
 }
