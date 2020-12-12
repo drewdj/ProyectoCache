@@ -47,12 +47,14 @@ int main() {
   while (fgets(arrayAccesos, MAXCHAR, fp) != NULL){
     char accesoBinario[10] = hexToBin(arrayAccesos);
     char etqBin[5] = {accesoBinario[0], accesoBinario[1], accesoBinario[2], accesoBinario[3], accesoBinario[4]};
-    char bloqueBin[2] = {accesoBinario[5], accesoBinario[6]}
-    char palabraBin[3] = {accesoBinario[7], accesoBinario[8], accesoBinario[9]}
+    char bloqueBin[2] = {accesoBinario[5], accesoBinario[6]};
+    char palabraBin[3] = {accesoBinario[7], accesoBinario[8], accesoBinario[9]};
     int decEtq = binToDec(etqBin);
     int decBlock = binToDec(bloqueBin);
     int decPalabra = binToDec(palabraBin);
-    int tf = comprobarETQ(accesoBinario);
+
+    int tf = comprobarETQ(accesoBinario, linea);
+
     if (tf == 1){
       printf("Acierto de CACHE ADDR %s ETQ %d linea 0%d palabra 0%d DATO %x", arrayAccesos, decEtq, decBlock, decPalabra, linea[decBlock].Datos[decPalabra]);
     }
@@ -62,7 +64,7 @@ int main() {
       actualizadorCache(accesoBinario, linea, RAM);
     }
     char palabraCache = lectorAcceso(accesoBinario, linea);
-    texto[iteracion] = palabra;
+    texto[iteracion] = palabraCache;
     iteracion++;
   }
   fclose(fp);

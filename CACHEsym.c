@@ -33,3 +33,64 @@ char lectorAcceso(char * accesoBinario, T_LINEA_CACHE * cache){
 void actualizadorTexto(char * texto, char palabra, int posicion /*Contador de iteraciones de accesos*/){
   texto[posicion] = palabra;
 }
+char hexToBin(char * hex){
+    int i = 0;
+    char final[16];
+    while (hex[i]) {
+        switch (hex[i]) {
+            case '0':
+                strcat(final, "0000");
+                break;
+            case '1':
+                strcat(final, "0001");
+                break;
+            case '2':
+                strcat(final, "0010");
+                break;
+            case '3':
+                strcat(final, "0011");
+                break;
+            case '4':
+                strcat(final, "0100");
+                break;
+            case '5':
+                strcat(final, "0101");
+                break;
+            case '6':
+                strcat(final, "0110");
+                break;
+            case '7':
+                strcat(final, "0111");
+                break;
+            case '8':
+                strcat(final, "1000");
+                break;
+            case '9':
+                strcat(final, "1001");
+                break;
+            case 'A':
+                strcat(final, "1010");
+                break;
+            case 'B':
+                strcat(final, "1011");
+                break;
+            case 'C':
+                strcat(final, "1100");
+                break;
+            case 'D':
+                strcat(final, "1101");
+                break;
+            case 'E':
+                strcat(final, "1110");
+                break;
+            case 'F':
+                strcat(final, "1111");
+                break;
+        }
+        i++;
+    }
+    return final;
+}
+comprobarETQ(char * bin){
+
+}
