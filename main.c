@@ -4,6 +4,7 @@ int main() {
   int numfallos = 0;
   int iteracion = 0;
   char texto[100];
+  char accesoBinario[10];
   FILE *fp;
   FILE *fRAM;
   //Inicialización de la CACHE
@@ -45,14 +46,13 @@ int main() {
   /*leer cada acceso de linea, como no podemos guardar en otro array o en el
   mismo array todos los accesos, sino de linea en linea, lo suyo sería trabajar con los accesos con el puntero de FILE*/
   while (fgets(arrayAccesos, MAXCHAR, fp) != NULL){
-    char accesoBinario[10] = hexToBin(arrayAccesos);
+    hexToBin(arrayAccesos,accesoBinario);
     char etqBin[5] = {accesoBinario[0], accesoBinario[1], accesoBinario[2], accesoBinario[3], accesoBinario[4]};
     char bloqueBin[2] = {accesoBinario[5], accesoBinario[6]};
     char palabraBin[3] = {accesoBinario[7], accesoBinario[8], accesoBinario[9]};
     int decEtq = binToDec(etqBin);
     int decBlock = binToDec(bloqueBin);
     int decPalabra = binToDec(palabraBin);
-
     int tf = comprobarETQ(etqBin,bloqueBin, linea);
 
     if (tf == 1){
