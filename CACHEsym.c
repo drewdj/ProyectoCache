@@ -36,6 +36,7 @@ void actualizadorTexto(char * texto, char palabra, int posicion /*Contador de it
 char hexToBin(char * hex){
     int i = 0;
     char final[16];
+    char finalbueno[10];
     while (hex[i]) {
         switch (hex[i]) {
             case '0':
@@ -89,8 +90,30 @@ char hexToBin(char * hex){
         }
         i++;
     }
-    return final;
+    for (int j = 0; j < 11; ++j) {
+        finalbueno[j]=final[j+7];
+    }
+    return finalbueno;
 }
-comprobarETQ(char * bin){
+comprobarETQ(char * ETQ,char * bloque,T_LINEA_CACHE * linea){
+int i;
+    if (bloque[0]=='0'){
+        if (bloque[1]=='0'){
+            i=0;
+        } else if (bloque[1]=='1'){
+            i=1;
+        }
+    } else if (bloque[0]=='1'){
+        if (bloque[1]=='0'){
+            i=2;
+        } else if (bloque[1]=='1'){
+            i=3;
+        }
+    }
 
+    if (linea[i].ETQ==ETQ){
+        return 1;
+    } else{
+        return 0;
+    }
 }
