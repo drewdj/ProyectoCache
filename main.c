@@ -53,7 +53,7 @@ int main() {
     int decBlock = binToDec(bloqueBin);
     int decPalabra = binToDec(palabraBin);
 
-    int tf = comprobarETQ(accesoBinario, linea);
+    int tf = comprobarETQ(etqBin,bloqueBin, linea);
 
     if (tf == 1){
       printf("Acierto de CACHE ADDR %s ETQ %d linea 0%d palabra 0%d DATO %x", arrayAccesos, decEtq, decBlock, decPalabra, linea[decBlock].Datos[decPalabra]);
