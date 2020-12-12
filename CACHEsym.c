@@ -13,6 +13,7 @@ int binToDec(char * bin){
 void actualizadorCache(char accesoBinario[10], T_LINEA_CACHE * cache, unsigned char * RAM){
   char bloque[2] = {accesoBinario[5], accesoBinario[6]};
   int decBlock = binToDec(bloque);
-  printf("Cagando el bloque %d en la linea %d", decBlock, decBlock);
-  cache[].ETQ
+  printf("Cagando el bloque %d en la linea %d", decBlock, decBlock % 4);
+  cache[decBlock % 4].ETQ = decBlock;
+  cache[decBlock % 4].Datos = {RAM[(decBlock * 8) + 7], RAM[(decBlock * 8) + 6], RAM[(decBlock * 8) + 5], RAM[(decBlock * 8) + 4], RAM[(decBlock * 8) + 3], RAM[(decBlock * 8) + 2], RAM[(decBlock * 8) + 1], RAM[(decBlock * 8)]}
 }
