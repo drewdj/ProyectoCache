@@ -33,7 +33,7 @@ char lectorAcceso(char * accesoBinario, T_LINEA_CACHE * cache){
 void actualizadorTexto(char * texto, char palabra, int posicion /*Contador de iteraciones de accesos*/){
   texto[posicion] = palabra;
 }
-char hexToBin(char * hex){
+void hexToBin(char * hex,char * accesoArray){
     int i = 0;
     char final[16];
     char finalbueno[10];
@@ -91,11 +91,10 @@ char hexToBin(char * hex){
         i++;
     }
     for (int j = 0; j < 11; ++j) {
-        finalbueno[j]=final[j+7];
+        accesoArray[j]=final[j+7];
     }
-    return finalbueno;
 }
-comprobarETQ(char * ETQ,char * bloque,T_LINEA_CACHE * linea){
+int comprobarETQ(char * ETQ,char * bloque,T_LINEA_CACHE * linea){
 int i;
     if (bloque[0]=='0'){
         if (bloque[1]=='0'){
