@@ -1,12 +1,4 @@
-#include <stdio.h>
-#include <string.h>
 #include "CACHEsym.h"
-typedef struct {
-    short int ETQ;
-    short int Datos[8];
-} T_LINEA_CACHE;
-
-
 int main() {
   int tiempoglobal = 0;
   int numfallos = 0;
