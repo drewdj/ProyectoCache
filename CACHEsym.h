@@ -7,6 +7,6 @@ typedef struct {
     short int Datos[8];
 } T_LINEA_CACHE;
 int comprobarEtiqueta();
-void actualizadorCache(int accesoBinario, T_LINEA_CACHE * linea, unsigned char RAM[1024]);
+void actualizadorCache(int accesoBinario, T_LINEA_CACHE * linea, unsigned char * RAM);
 int binToDec(int * bin);
 /*Los traductores lo hacemos por paso por referencia o paso por valor?*/
