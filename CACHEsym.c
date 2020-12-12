@@ -95,7 +95,7 @@ char hexToBin(char * hex){
     }
     return finalbueno;
 }
-comprobarETQ(char * ETQ,char * bloque,T_LINEA_CACHE * linea){
+int comprobarETQ(char * ETQ,char * bloque,T_LINEA_CACHE * linea){
 int i;
     if (bloque[0]=='0'){
         if (bloque[1]=='0'){
