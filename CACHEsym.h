@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 #define RAM_SIZE 1024
 typedef struct {
     short int ETQ;
