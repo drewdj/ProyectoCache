@@ -10,10 +10,26 @@ int binToDec(char * bin){
   printf("%d", decNumber);
   return decNumber;
 }
-void actualizadorCache(char accesoBinario[10], T_LINEA_CACHE * cache, unsigned char * RAM){
+void actualizadorCache(char * accesoBinario, T_LINEA_CACHE * cache, unsigned char * RAM){
   char bloque[2] = {accesoBinario[5], accesoBinario[6]};
   int decBlock = binToDec(bloque);
-  printf("Cagando el bloque %d en la linea %d", decBlock, decBlock % 4);
-  cache[decBlock % 4].ETQ = decBlock;
-  cache[decBlock % 4].Datos = {RAM[(decBlock * 8) + 7], RAM[(decBlock * 8) + 6], RAM[(decBlock * 8) + 5], RAM[(decBlock * 8) + 4], RAM[(decBlock * 8) + 3], RAM[(decBlock * 8) + 2], RAM[(decBlock * 8) + 1], RAM[(decBlock * 8)]}
+  char etqBin[5] = {accesoBinario[0], accesoBinario[1], accesoBinario[2], accesoBinario[3], accesoBinario[4]};
+  int decEtq = binToDec(etqBin);
+  printf("Cagando el bloque %d en la linea %d", decBlock, decBlock);
+  cache[decBlock].ETQ = decEtq;
+  cache[decBlock].Datos = {RAM[(decBlock * 8) + 7], RAM[(decBlock * 8) + 6], RAM[(decBlock * 8) + 5], RAM[(decBlock * 8) + 4], RAM[(decBlock * 8) + 3], RAM[(decBlock * 8) + 2], RAM[(decBlock * 8) + 1], RAM[(decBlock * 8)]};
+}
+
+char lectorAcceso(char * accesoBinario, T_LINEA_CACHE * cache){
+  char bloque[2] = {accesoBinario[5], accesoBinario[6]};
+  int decBlock = binToDec(bloque);
+  char palabraBin[3] = {accesoBinario[7], accesoBinario[8], accesoBinario[9]};
+  int decPalabra = binToDec(palabraBin);
+  char palabraCache = cache[decBlock].Datos[decPalabra];
+  return palabraCache;
+}
+
+//Poner esto en el bucle while una vez comprobado que la palabra existe en ram o en cache
+void actualizadorTexto(char * texto, char palabra, int posicion /*Contador de iteraciones de accesos*/){
+  texto[posicion] = palabra;
 }

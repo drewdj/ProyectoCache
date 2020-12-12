@@ -2,6 +2,7 @@
 int main() {
   int tiempoglobal = 0;
   int numfallos = 0;
+  char texto[100];
   FILE *fp;
   FILE *fRAM;
   //Inicialización de la CACHE
