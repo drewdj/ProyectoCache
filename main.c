@@ -2,6 +2,7 @@
 int main() {
   int tiempoglobal = 0;
   int numfallos = 0;
+  int iteracion = 0;
   char texto[100];
   FILE *fp;
   FILE *fRAM;
@@ -53,8 +54,16 @@ int main() {
     int decPalabra = binToDec(palabraBin);
     int tf = comprobarETQ(accesoBinario);
     if (tf == 1){
-      printf("Acierto de CACHE ADDR %s, ETQ %d linea 0%d palabra 0%d DATO %x", arrayAccesos, );
+      printf("Acierto de CACHE ADDR %s ETQ %d linea 0%d palabra 0%d DATO %x", arrayAccesos, decEtq, decBlock, decPalabra, linea[decBlock].Datos[decPalabra]);
     }
+    else{
+      numfallos += 1;
+      printf("Fallo de CACHE %d ADDR %s ETQ %d linea 0%d palabra 0%d bloque 0%d", numfallos, arrayAccesos, decEtq, decBlock, decPalabra, decBlock);
+      actualizadorCache(accesoBinario, linea, RAM);
+    }
+    char palabraCache = lectorAcceso(accesoBinario, linea);
+    texto[iteracion] = palabra;
+    iteracion++;
   }
   fclose(fp);
   return 0;
