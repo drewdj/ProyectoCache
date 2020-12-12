@@ -18,7 +18,14 @@ void actualizadorCache(char * accesoBinario, T_LINEA_CACHE * cache, unsigned cha
   int decEtq = binToDec(etqBin);
   printf("Cagando el bloque %d en la linea %d", decBlock, decBlock);
   cache[decBlock].ETQ = decEtq;
-  cache[decBlock].Datos = {RAM[(decBlock * 8) + 7], RAM[(decBlock * 8) + 6], RAM[(decBlock * 8) + 5], RAM[(decBlock * 8) + 4], RAM[(decBlock * 8) + 3], RAM[(decBlock * 8) + 2], RAM[(decBlock * 8) + 1], RAM[(decBlock * 8)]};
+  cache[decBlock].Datos[0] = RAM[(decBlock * 8) + 7];
+  cache[decBlock].Datos[1] = RAM[(decBlock * 8) + 6];
+  cache[decBlock].Datos[2] = RAM[(decBlock * 8) + 5];
+  cache[decBlock].Datos[3] = RAM[(decBlock * 8) + 4];
+  cache[decBlock].Datos[4] = RAM[(decBlock * 8) + 3];
+  cache[decBlock].Datos[5] = RAM[(decBlock * 8) + 2];
+  cache[decBlock].Datos[6] = RAM[(decBlock * 8) + 1];
+  cache[decBlock].Datos[7] = RAM[decBlock * 8];
 }
 
 char lectorAcceso(char * accesoBinario, T_LINEA_CACHE * cache){
