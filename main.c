@@ -44,8 +44,6 @@ int main() {
   rewind(fp);
   int MAXCHAR = (numero_accesos * 5) - 1;
   char arrayAccesos[MAXCHAR];
-  char arbolAccesos[numero_accesos][5];
-  int cb = 0;
   /*leer cada acceso de linea, como no podemos guardar en otro array o en el
   mismo array todos los accesos, sino de linea en linea, lo suyo sería trabajar con los accesos con el puntero de FILE*/
   while (fgets(arrayAccesos, MAXCHAR, fp) != NULL){
