@@ -14,7 +14,7 @@ int main() {
   }
   //Cargar RAM (Podemos hacer esto en una funcion para que quede más limpio)
   fRAM = fopen("RAM.bin", "rb");
-  unsigned char RAM[1024];
+  unsigned char RAM[RAM_SIZE];
   fread(RAM ,sizeof(RAM), 1 , fRAM);
   printf("%s\n", RAM);
   fclose(fRAM);//ALMACENA 5 caracteres de más comprobar mañana
