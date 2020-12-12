@@ -7,8 +7,8 @@ int main() {
   FILE *fp;
   FILE *fRAM;
   //Inicialización de la CACHE
+  T_LINEA_CACHE linea[4];
   for (int i = 0; i < 4; ++i) {
-      T_LINEA_CACHE linea[i];
       linea[i].ETQ = 0xFF;
       for (int j = 0; j < 8; ++j) {
           linea[i].Datos[j]=0;
