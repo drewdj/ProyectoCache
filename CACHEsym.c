@@ -1,4 +1,5 @@
 #include "CACHEsym.h"
+
 int binToDec(char * bin){
   int decNumber, intBin;
   intBin = atoi(bin);
@@ -36,7 +37,6 @@ void actualizadorTexto(char * texto, char palabra, int posicion /*Contador de it
 void hexToBin(char * hex,char * accesoArray){
     int i = 0;
     char final[16];
-    char finalbueno[10];
     while (hex[i]) {
         switch (hex[i]) {
             case '0':
@@ -110,7 +110,7 @@ int i;
         }
     }
 
-    if (linea[i].ETQ==ETQ){
+    if (*linea[i].ETQ==ETQ){
         return 1;
     } else{
         return 0;
