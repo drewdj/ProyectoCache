@@ -29,7 +29,7 @@ int main() {//declaracion variables
     printf("No se ha podido abrir RAM.bin");
     return 0;
   }
-  fclose(fRAM);//ALMACENA 5 caracteres de más comprobar mañana
+  fclose(fRAM);
 
   //Cargar Accesos a memoria
   fp = fopen("E:\\ProyectoCache\\accesos_memoria.txt","r");
