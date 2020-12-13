@@ -1,22 +1,19 @@
 #include "CACHEsym.h"
 
 int binToDec(char * bin){
-  int decNumber, intBin;
+  int decNumber=0;
+          int intBin;
   intBin = atoi(bin);
   for(int i = 0; intBin; i++, intBin /= 10){
         if (intBin % 10){
             decNumber = decNumber + pow(2, i);
         }
       }
-  printf("%d", decNumber);
+
   return decNumber;
 }
-void actualizadorCache(char * accesoBinario, T_LINEA_CACHE * cache, unsigned char * RAM){
-  char bloque[2] = {accesoBinario[5], accesoBinario[6]};
-  int decBlock = binToDec(bloque);
-  char etqBin[5] = {accesoBinario[0], accesoBinario[1], accesoBinario[2], accesoBinario[3], accesoBinario[4]};
-  int decEtq = binToDec(etqBin);
-  printf("Cagando el bloque %d en la linea %d", decBlock, decBlock);
+void actualizadorCache(int decEtq,int decBlock, T_LINEA_CACHE * cache, unsigned char * RAM){
+  printf("Cargando el bloque %d en la linea %d\n", decBlock, decBlock);
   cache[decBlock].ETQ = decEtq;
   cache[decBlock].Datos[0] = RAM[(decBlock * 8) + 7];
   cache[decBlock].Datos[1] = RAM[(decBlock * 8) + 6];
@@ -28,11 +25,7 @@ void actualizadorCache(char * accesoBinario, T_LINEA_CACHE * cache, unsigned cha
   cache[decBlock].Datos[7] = RAM[decBlock * 8];
 }
 
-char lectorAcceso(char * accesoBinario, T_LINEA_CACHE * cache){
-  char bloque[2] = {accesoBinario[5], accesoBinario[6]};
-  int decBlock = binToDec(bloque);
-  char palabraBin[3] = {accesoBinario[7], accesoBinario[8], accesoBinario[9]};
-  int decPalabra = binToDec(palabraBin);
+char lectorAcceso(int decBlock,int decPalabra, T_LINEA_CACHE * cache){
   char palabraCache = cache[decBlock].Datos[decPalabra];
   return palabraCache;
 }
@@ -43,7 +36,7 @@ void actualizadorTexto(char * texto, char palabra, int posicion /*Contador de it
 }
 void hexToBin(char * hex,char * accesoArray){
     int i = 0;
-    char final[16];
+    char final[16]="\0";
     while (hex[i]) {
         switch (hex[i]) {
             case '0':
@@ -98,10 +91,10 @@ void hexToBin(char * hex,char * accesoArray){
         i++;
     }
     for (int j = 0; j < 11; ++j) {
-        accesoArray[j]=final[j+7];
+        accesoArray[j]=final[j+6];
     }
 }
-int comprobarETQ(char * ETQ,char * bloque,T_LINEA_CACHE * linea){
+int comprobarETQ(int ETQ,char * bloque,T_LINEA_CACHE * linea){
 int i;
     if (bloque[0]=='0'){
         if (bloque[1]=='0'){
@@ -117,7 +110,7 @@ int i;
         }
     }
 
-    if (*linea[i].ETQ==ETQ){
+    if (linea[i].ETQ==ETQ){
         return 1;
     } else{
         return 0;
