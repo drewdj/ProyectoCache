@@ -5,7 +5,9 @@ int main() {
   int numfallos = 0;
   int iteracion = 0;
   char texto[100];
+  char texto2[100];
   char accesoBinario[10];
+  unsigned char RAM[RAM_SIZE];
   FILE *fp;
   FILE *fRAM;
   //Inicialización de la CACHE
@@ -18,14 +20,15 @@ int main() {
   }
   //Cargar RAM (Podemos hacer esto en una funcion para que quede más limpio)
   fRAM = fopen("E:\\ProyectoCache\\RAM.bin", "rb");
-  unsigned char RAM[RAM_SIZE];
   fread(RAM ,sizeof(RAM), 1 , fRAM);
   if (fRAM == NULL) {
     printf("No se ha podido abrir RAM.bin");
     return 0;
   }
   //printf("%s\n", RAM);//Quitar al final, es un control
+
   fclose(fRAM);//ALMACENA 5 caracteres de más comprobar mañana
+
   //Cargar Accesos a memoria
   fp = fopen("E:\\ProyectoCache\\accesos_memoria.txt","r");
   int numero_accesos = 0;
@@ -39,6 +42,7 @@ int main() {
       numero_accesos = numero_accesos + 1;
     }
   }
+
   numero_accesos = numero_accesos + 1; //se repite una vez más porque el ultimo acceso no tiene \n
   //printf("Numero de accesos %d\n", numero_accesos);
   rewind(fp);
@@ -46,6 +50,7 @@ int main() {
   char arrayAccesos[4];
   /*leer cada acceso de linea, como no podemos guardar en otro array o en el
   mismo array todos los accesos, sino de linea en linea, lo suyo sería trabajar con los accesos con el puntero de FILE*/
+
   while (fgets(arrayAccesos, MAXCHAR, fp) != NULL){
       arrayAccesos[4]='\0';
     hexToBin(arrayAccesos,accesoBinario);
@@ -77,8 +82,11 @@ int main() {
     }
     char palabraCache = lectorAcceso(decBlock,decPalabra, linea);
     texto[iteracion] = palabraCache;
+      texto2[iteracion] = palabraCache;
     iteracion++;
   }
   fclose(fp);
+  texto[iteracion]='\0';
+  printf("%s",texto);
   return 0;
 }
