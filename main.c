@@ -23,7 +23,7 @@ int main() {//declaracion variables
   }
 
   //Cargar RAM
-  fRAM = fopen("E:\\ProyectoCache\\RAM.bin", "rb");
+  fRAM = fopen("RAM.bin", "rb");
   fread(RAM ,sizeof(RAM), 1 , fRAM);
   if (fRAM == NULL) {
     printf("No se ha podido abrir RAM.bin");
@@ -32,7 +32,7 @@ int main() {//declaracion variables
   fclose(fRAM);
 
   //Cargar Accesos a memoria
-  fp = fopen("E:\\ProyectoCache\\accesos_memoria.txt","r");
+  fp = fopen("accesos_memoria.txt","r");
   int numero_accesos = 0;
   char c;
 
