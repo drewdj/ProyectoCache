@@ -19,7 +19,7 @@ int main() {
       }
   }
   //Cargar RAM (Podemos hacer esto en una funcion para que quede más limpio)
-  fRAM = fopen("E:\\ProyectoCache\\RAM.bin", "rb");
+  fRAM = fopen("RAM.bin", "rb");
   fread(RAM ,sizeof(RAM), 1 , fRAM);
   if (fRAM == NULL) {
     printf("No se ha podido abrir RAM.bin");
@@ -30,7 +30,7 @@ int main() {
   fclose(fRAM);//ALMACENA 5 caracteres de más comprobar mañana
 
   //Cargar Accesos a memoria
-  fp = fopen("E:\\ProyectoCache\\accesos_memoria.txt","r");
+  fp = fopen("accesos_memoria.txt","r");
   int numero_accesos = 0;
   char c;
   if (fp == NULL) {
