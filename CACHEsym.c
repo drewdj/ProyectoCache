@@ -100,7 +100,7 @@ void hexToBin(char * hex,char * accesoArray){
         accesoArray[j]=final[j+7];
     }
 }
-int comprobarETQ(char * ETQ,char * bloque,T_LINEA_CACHE * linea){
+int comprobarETQ(int * ETQ,char * bloque,T_LINEA_CACHE * linea){
 int i;
     if (bloque[0]=='0'){
         if (bloque[1]=='0'){
