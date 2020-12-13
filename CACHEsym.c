@@ -1,37 +1,6 @@
 #include "CACHEsym.h"
 
-int binToDec(char * bin){
-  int decNumber=0;
-          int intBin;
-  intBin = atoi(bin);
-  for(int i = 0; intBin; i++, intBin /= 10){
-        if (intBin % 10){
-            decNumber = decNumber + pow(2, i);
-        }
-      }
-
-  return decNumber;
-}
-void actualizadorCache(int decEtq,int decBlock, T_LINEA_CACHE * cache, unsigned char * RAM){
-  printf("Cargando el bloque %d en la linea %d\n", decBlock, decBlock);
-  cache[decBlock].ETQ = decEtq;
-
-  cache[decBlock].Datos[0] = RAM[(decBlock * 8 + decEtq*32) + 7];
-  cache[decBlock].Datos[1] = RAM[(decBlock * 8 + decEtq*32) + 6];
-  cache[decBlock].Datos[2] = RAM[(decBlock * 8 + decEtq*32) + 5];
-  cache[decBlock].Datos[3] = RAM[(decBlock * 8 + decEtq*32) + 4];
-  cache[decBlock].Datos[4] = RAM[(decBlock * 8 + decEtq*32) + 3];
-  cache[decBlock].Datos[5] = RAM[(decBlock * 8 + decEtq*32) + 2];
-  cache[decBlock].Datos[6] = RAM[(decBlock * 8 + decEtq*32) + 1];
-  cache[decBlock].Datos[7] = RAM[decBlock * 8 + decEtq*32];
-}
-
-char lectorAcceso(int decBlock,int decPalabra, T_LINEA_CACHE * cache){
-  char palabraCache = cache[decBlock].Datos[decPalabra];
-  return palabraCache;
-}
-
-void hexToBin(char * hex,char * accesoArray){
+void hexToBin(char * hex,char * accesoArray){//"mascara DIY" entra un char con la direccion en HEX y paso por referencia a BIN
     int i = 0;
     char final[16]="\0";
     while (hex[i]) {
@@ -91,8 +60,22 @@ void hexToBin(char * hex,char * accesoArray){
         accesoArray[j]=final[j+6];
     }
 }
-int comprobarETQ(int ETQ,char * bloque,T_LINEA_CACHE * linea){
-int i;
+
+int binToDec(char * bin){//Conversion BIN a DEC
+  int decNumber=0;
+  int intBin;
+  intBin = atoi(bin);
+  for(int i = 0; intBin; i++, intBin /= 10){//suma de potencias de 2 en funcion de la posicion del 1 en BIN
+        if (intBin % 10){
+            decNumber = decNumber + pow(2, i);
+        }
+      }
+
+  return decNumber;
+}
+
+int comprobarETQ(int ETQ,char * bloque,T_LINEA_CACHE * linea){//Paso de ETQ de BIN a DEC y comparacion con la linea en Cache
+    int i;
     if (bloque[0]=='0'){
         if (bloque[1]=='0'){
             i=0;
@@ -113,3 +96,24 @@ int i;
         return 0;
     }
 }
+
+void actualizadorCache(int decEtq,int decBlock, T_LINEA_CACHE * cache, unsigned char * RAM){//Acualizar cache con los valores buscadon en RAM
+  printf("Cargando el bloque %d en la linea %d\n", decBlock, decBlock);
+  cache[decBlock].ETQ = decEtq;
+  cache[decBlock].Datos[0] = RAM[(decBlock * 8 + decEtq*32) + 7];
+  cache[decBlock].Datos[1] = RAM[(decBlock * 8 + decEtq*32) + 6];
+  cache[decBlock].Datos[2] = RAM[(decBlock * 8 + decEtq*32) + 5];
+  cache[decBlock].Datos[3] = RAM[(decBlock * 8 + decEtq*32) + 4];
+  cache[decBlock].Datos[4] = RAM[(decBlock * 8 + decEtq*32) + 3];
+  cache[decBlock].Datos[5] = RAM[(decBlock * 8 + decEtq*32) + 2];
+  cache[decBlock].Datos[6] = RAM[(decBlock * 8 + decEtq*32) + 1];
+  cache[decBlock].Datos[7] = RAM[decBlock * 8 + decEtq*32];
+}
+
+char lectorAcceso(int decBlock,int decPalabra, T_LINEA_CACHE * cache){//Lee cache para devolver la palabra accedida
+  char palabraCache = cache[decBlock].Datos[decPalabra];
+  return palabraCache;
+}
+
+
+
