@@ -1,5 +1,4 @@
 #include "CACHEsym.h"
-
 int binToDec(char * bin){
   int decNumber, intBin;
   intBin = atoi(bin);
@@ -117,7 +116,7 @@ int i;
         }
     }
 
-    if (*linea[i].ETQ==ETQ){
+    if (linea[i].ETQ==ETQ){
         return 1;
     } else{
         return 0;
